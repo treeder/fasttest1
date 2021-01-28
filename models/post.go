@@ -9,4 +9,5 @@ type Post struct {
 
 	Title string `json:"title" firestore:"title"`
 	Body  string `json:"body" firestore:"body"`
+	Votes int64  `json:"votes" firestore:"votes"`
 }

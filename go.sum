@@ -188,6 +188,8 @@ github.com/stretchr/testify v1.6.1/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/
 github.com/treeder/firetils v0.0.8/go.mod h1:Nk1nM0tf0GHrEkdMAUeZnDiWI1miWPc8dtt2ZeNnOy8=
 github.com/treeder/firetils v0.0.10 h1:J1qU+RJxln7MeLnf8yLZ6IluKA+qKbpbSxdxq4rzPGI=
 github.com/treeder/firetils v0.0.10/go.mod h1:N4RLFtBI//hZaNTFoVYB2WLULoVnQ7cLeHG/6x/gI5A=
+github.com/treeder/firetils v0.0.11 h1:k4B86Y4ug1ELcJ4+65va+ROh8t0sgxLUmxitLBO67GY=
+github.com/treeder/firetils v0.0.11/go.mod h1:ZsbcLMfmuhtpphfU3HwCF0hbdgrGL3Zp7WsPIipby7E=
 github.com/treeder/gcputils v0.0.21/go.mod h1:+mYG5DlMf1E2eK40zuPNVqHvOjZX9x6QLPbCsa/GCkM=
 github.com/treeder/gcputils v0.0.35 h1:2GsbsZV2j31+mESeozBRqhBROgEJv6h7kJ6jnFykJgM=
 github.com/treeder/gcputils v0.0.35/go.mod h1:taXqdpglpJ20dD9Gm/txgbmJ/jYFOSndpFOQVw6G32s=

@@ -56,7 +56,8 @@ func main() {
 		r.With(firetils.FireAuth).Get("/", gotils.ErrorHandler(getPosts))
 		r.With(firetils.FireAuth).Post("/", gotils.ErrorHandler(postPost))
 		r.Get("/{id}", gotils.ErrorHandler(getPost))
-		r.Delete("/{id}", gotils.ErrorHandler(deletePost))
+		r.With(firetils.FireAuth).Delete("/{id}", gotils.ErrorHandler(deletePost))
+		r.With(firetils.FireAuth).Post("/{id}/vote", gotils.ErrorHandler(postVote))
 	})
 
 	// Start server
