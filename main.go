@@ -6,10 +6,16 @@ import (
 	"log"
 	"net/http"
 
+	"cloud.google.com/go/firestore"
+	"github.com/go-chi/chi"
 	"github.com/treeder/firetils"
 	"github.com/treeder/gcputils"
 	"github.com/treeder/goapibase"
 	"github.com/treeder/gotils"
+)
+
+var (
+	fs *firestore.Client
 )
 
 func main() {
@@ -27,7 +33,7 @@ func main() {
 	if err != nil {
 		gotils.L(ctx).Sugar().Fatalf("couldn't init firebase newapp: %v\n", err)
 	}
-	firestore, err := firebaseApp.Firestore(ctx)
+	fs, err = firebaseApp.Firestore(ctx)
 	if err != nil {
 		gotils.L(ctx).Sugar().Fatalf("couldn't init firestore: %v\n", err)
 	}
@@ -38,14 +44,21 @@ func main() {
 	// }
 
 	// add something to firestore just to be sure it's working
-	tmp := firestore.Collection("tmp")
+	tmp := fs.Collection("tmp")
 	tmp.Add(ctx, TmpType{Name: "wall-e"})
 
 	r := goapibase.InitRouter(ctx)
 	// Setup your routes
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("welcome"))
+		gotils.WriteMessage(w, http.StatusOK, "hello!")
 	})
+	r.Route("/posts", func(r chi.Router) {
+		r.With(firetils.FireAuth).Get("/", gotils.ErrorHandler(getPosts))
+		r.With(firetils.FireAuth).Post("/", gotils.ErrorHandler(postPost))
+		r.Get("/{id}", gotils.ErrorHandler(getPost))
+		r.Delete("/{id}", gotils.ErrorHandler(deletePost))
+	})
+
 	// Start server
 	_ = goapibase.Start(ctx, gotils.Port(8080), r)
 }
