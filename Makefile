@@ -1,10 +1,10 @@
 .PHONY: dep build docker run release install test backup
 
 build:
-	go build
+	go build -o app
 
 run: build
-	./fasttest1
+	./app
 
 test:
 	go test ./...
